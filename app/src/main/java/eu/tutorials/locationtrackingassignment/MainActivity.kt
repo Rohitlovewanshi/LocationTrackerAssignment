@@ -49,7 +49,6 @@ class MainActivity : ComponentActivity() {
             }
 
             LocationTrackingAssignmentTheme {
-                // A surface container using the 'background' color from the theme
                 val navController = rememberNavController()
                 Surface(
                     modifier = Modifier.fillMaxSize(),

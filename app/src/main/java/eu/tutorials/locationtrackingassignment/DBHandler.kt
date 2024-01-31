@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class DBHandler(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
-
     companion object {
         private const val DB_NAME = "LocationTrackerDB"
         private const val DB_VERSION = 1
@@ -20,7 +19,6 @@ class DBHandler(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB
         private const val END_LONGITUDE_COL = "end_longitude"
 
     }
-
     override fun onCreate(db: SQLiteDatabase) {
 
         val query = ("CREATE TABLE " + TABLE_NAME + " ("
@@ -33,9 +31,7 @@ class DBHandler(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB
 
         db.execSQL(query)
     }
-
     fun addNewHistory(item: HistoryItem) {
-
         val db = this.writableDatabase
 
         val values = ContentValues()
@@ -48,12 +44,10 @@ class DBHandler(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
-
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
     }
-
     fun readHistory(): ArrayList<HistoryItem>? {
         val db = this.readableDatabase
 

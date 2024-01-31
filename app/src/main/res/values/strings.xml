@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LocationTrackingAssignment</string>
+    <string name="google_map_api">AIzaSyBFR_0XNPTC303RmpJNV-tuiX2LexfGNm4</string>
 </resources>

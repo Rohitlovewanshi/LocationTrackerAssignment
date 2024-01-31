@@ -13,10 +13,6 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -24,7 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
 
 @Composable
@@ -32,12 +27,6 @@ fun HistoryScreen(
     navController: NavHostController,
     navigateToMap: (LatLng,LatLng) -> Unit
 ) {
-
-    var hItems by remember {
-        mutableStateOf(listOf<HistoryItem>())
-    }
-
-    hItems = hItems + HistoryItem("30-01-2024 00:00:00", "34.76","98.867", "5645.76","876.878")
 
     lateinit var historyList: List<HistoryItem>
     historyList = ArrayList<HistoryItem>()

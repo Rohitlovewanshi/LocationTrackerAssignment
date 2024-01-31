@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 fun AppBarView(
     title: String,
     onSetTrackIntervalClicked: () -> Unit = {},
+    onExportClicked: () -> Unit = {},
     onExitClicked: () -> Unit = {},
     onBackNavClicked: () -> Unit = {}
 ){
@@ -71,6 +72,13 @@ fun AppBarView(
                     onSetTrackIntervalClicked()
                 }) {
                     Text(text = "Set Tracking Interval")
+                }
+
+                DropdownMenuItem(onClick = {
+                    mDisplayMenu = false
+                    onExportClicked()
+                }) {
+                    Text(text = "Export History to File")
                 }
 
                 DropdownMenuItem(onClick = {
