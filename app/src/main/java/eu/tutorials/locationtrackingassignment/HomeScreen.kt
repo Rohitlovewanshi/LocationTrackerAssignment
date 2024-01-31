@@ -59,8 +59,8 @@ fun HomeScreen(
     navigateToHistory: () -> Unit
 ) {
 
-    var showDialog = remember { mutableStateOf(false) }
-    var trackingInterval = remember { mutableStateOf("1000") }
+    val showDialog = remember { mutableStateOf(false) }
+    val trackingInterval = remember { mutableStateOf("1000") }
 
     if (showDialog.value) {
         ShowDialog(trackingInterval, showDialog)
@@ -179,10 +179,12 @@ fun HomeScreen(
                             endLongitude = currentLocation.value.longitude.toString()
                         )
 
-                        insertHistoryToDatabase(context,historyItem)
+                        DBHandler(context).addNewHistory(historyItem)
 
                         currentLocation.value = LatLng(0.toDouble(), 0.toDouble())
                         startLocation.value = currentLocation.value
+
+                        Toast.makeText(context,"History created.",Toast.LENGTH_LONG).show()
                     },
                 ) {
                     Text(text = "Stop Tracking")
@@ -281,7 +283,7 @@ private fun startLocationUpdates(
             Priority.PRIORITY_HIGH_ACCURACY, 100
         )
             .setWaitForAccurateLocation(false)
-            .setMinUpdateIntervalMillis(trackingInterval.value.toString().toLong())
+            .setMinUpdateIntervalMillis(trackingInterval.value.toLong())
             .setMaxUpdateAgeMillis(100)
             .build()
 
@@ -291,19 +293,4 @@ private fun startLocationUpdates(
             Looper.getMainLooper()
         )
     }
-}
-
-fun insertHistoryToDatabase(context: Context, item: HistoryItem) {
-
-    val dbHandler = DBHandler(context)
-
-    dbHandler.addNewHistory(
-        item.dateAndTime,
-        item.startLatitude,
-        item.startLongitude,
-        item.endLatitude,
-        item.endLongitude
-    )
-
-    Toast.makeText(context,"History created.",Toast.LENGTH_LONG).show()
 }

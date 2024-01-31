@@ -34,22 +34,16 @@ class DBHandler(context: Context?) : SQLiteOpenHelper(context, DB_NAME, null, DB
         db.execSQL(query)
     }
 
-    fun addNewHistory(
-        dateAndTime: String?,
-        startLatitude: String?,
-        startLongitude: String?,
-        endLatitude: String?,
-        endLongitude: String?,
-    ) {
+    fun addNewHistory(item: HistoryItem) {
 
         val db = this.writableDatabase
 
         val values = ContentValues()
-        values.put(DATE_TIME_COL, dateAndTime)
-        values.put(START_LATITUDE_COL, startLatitude)
-        values.put(START_LONGITUDE_COL, startLongitude)
-        values.put(END_LATITUDE_COL, endLatitude)
-        values.put(END_LONGITUDE_COL, endLongitude)
+        values.put(DATE_TIME_COL, item.dateAndTime)
+        values.put(START_LATITUDE_COL, item.startLatitude)
+        values.put(START_LONGITUDE_COL, item.startLongitude)
+        values.put(END_LATITUDE_COL, item.endLatitude)
+        values.put(END_LONGITUDE_COL, item.endLongitude)
 
         db.insert(TABLE_NAME, null, values)
         db.close()
