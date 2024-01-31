@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
     private lateinit var mFusedLocationClient : FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
